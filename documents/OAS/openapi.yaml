@@ -1,0 +1,315 @@
+openapi: 3.0.0
+info:
+  title: CocktailAPI
+  description: backend for CocktailRecipes App
+  version: 0.0.1
+servers:
+  - url: http://{host}:{port}/api
+    description: for development
+    variables:
+      host:
+        default: localhost
+      port:
+        default: "5000"
+paths:
+  /cocktails:
+    get:
+      tags:
+        - Cocktails
+      summary: get cocktail list
+      description: You can get a cocktail list which contains cocktailID, cocktailName, cocktailImgUrl
+      parameters: []
+      responses:
+        "200":
+          $ref: "#/components/responses/cocktail_summary_list"
+  /cocktails/{cocktail_id}:
+    get:
+      tags:
+        - Cocktails
+      summary: get details of a cocktail
+      description: You can get details of a cocktail that is specified by a path parameter
+      parameters:
+        [
+          {
+            "in": "path",
+            "name": "cocktail_id",
+            "schema": { type: string },
+            "required": true
+          }
+        ]
+      responses:
+        "200":
+          $ref: "#/components/responses/cocktail_detail"
+    post:
+      tags:
+        - Cocktails
+      summary: post new cocktail
+      description: You can register a new cocktail by posting a JSON
+      parameters:
+        [
+          {
+            "in": "path",
+            "name": "cocktail_id",
+            "schema": { type: string },
+            "required": true
+          }
+        ]
+      requestBody:
+        $ref: "#/components/requestBodies/new_or_updated_cocktail_detail"
+      responses:
+        "200":
+          $ref: "#/components/responses/cocktail_detail"
+    put:
+      tags:
+        - Cocktails
+      summary: update cocktail info
+      description: You can update cocktail info by putting a JSON
+      parameters:
+        [
+          {
+            "in": "path",
+            "name": "cocktail_id",
+            "schema": { type: string },
+            "required": true
+          }
+        ]
+      requestBody:
+        $ref: "#/components/requestBodies/new_or_updated_cocktail_detail"
+      responses:
+        "200":
+          $ref: "#/components/responses/cocktail_detail"
+  /ingredients:
+    get:
+      tags:
+        - Ingredients
+      summary: get all ingredients
+      description: You can get ingredient list which contains ingredient_id, ingredient_name_jp, ingredient_name_en
+      parameters: []
+      responses:
+        "200":
+          $ref: "#/components/responses/ingredient_list"
+    post:
+      tags:
+        - Ingredients
+      summary: post a new ingredient
+      description: You can register a new ingredient by posting JSON
+      parameters: []
+      requestBody:
+        $ref: "#/components/requestBodies/new_or_updated_ingredient"
+      responses:
+        "200":
+          $ref: "#/components/responses/ingredient_info"
+  /ingredients/{ingredient_id}:
+    put:
+      tags:
+        - Ingredients
+      summary: update ingredient info
+      description: You can update ingredient info putting a JSON object
+      parameters:
+        [
+          {
+            "in": "path",
+            "name": "ingredient_id",
+            "schema": { type: string },
+            "required": true
+          }
+        ]
+      requestBody:
+        $ref: "#/components/requestBodies/new_or_updated_ingredient"
+      responses:
+        "200":
+          $ref: "#/components/responses/ingredient_info"
+
+tags:
+  - name: Cocktails
+    description: Access to cocktail info
+  - name: Ingredients
+    description: Access to ingredients info
+
+components:
+  schemas:
+    cocktail_id:
+      type: integer
+      description: ID of cocktail (1-based indexing)
+    cocktail_name_jp:
+      type: string
+      description: name of cocktail in Japanese
+    cocktail_name_en:
+      type: string
+      description: name of cocktail in English
+    cocktail_note_jp:
+      type: string
+      description: note of cocktail in Japanese
+    cocktail_note_en:
+      type: string
+      description: note of cocktail in English
+    cocktail_img_url:
+      type: string
+      description: URL to image of cocktail
+    ingredient_id:
+      type: integer
+      description: ID of Ingredient (1-based indexing)
+    ingredient_name_jp:
+      type: string
+      description: name of ingredient in Japanese
+    ingredient_name_en:
+      type: string
+      description: name of ingredient in English
+    amount_jp:
+      type: string
+      description: ingredient amount to make cocktails in Japanese
+    amount_en:
+      type: string
+      description: ingredient amount to make cocktails in English
+    order:
+      type: integer
+      description: An integer that represent the order of the step in a recipe (1-based indexing)
+    recipe_jp:
+      type: string
+      description: description of a step in a recipe in Japanese
+    recipe_en:
+      type: string
+      description: description of a step in a recipe in English
+    ordered_recipe:
+      type: object
+      description: object describing one step of how to make a cocktail
+      properties:
+        order:
+          $ref: "#/components/schemas/order"
+        recipe_jp:
+          $ref: "#/components/schemas/recipe_jp"
+        recipe_en:
+          $ref: "#/components/schemas/recipe_en"
+    procedure:
+      type: array
+      description: procedure of making a cocktail
+      items:
+        $ref: "#/components/schemas/ordered_recipe"
+    amount_of_ingredient:
+      type: object
+      description: object describing a necessary ingredient and its amount
+      properties:
+        ingredient_id:
+          $ref: "#/components/schemas/ingredient_id"
+        ingredient_name_jp:
+          $ref: "#/components/schemas/ingredient_name_jp"
+        ingredient_name_en:
+          $ref: "#/components/schemas/ingredient_name_en"
+        amount_jp:
+          $ref: "#/components/schemas/amount_jp"
+        amount_en:
+          $ref: "#/components/schemas/amount_en"
+    necessary_ingredients:
+      type: array
+      description: necessary ingredients to make a cocktail
+      items:
+        $ref: "#/components/schemas/amount_of_ingredient"
+    cocktail_summary:
+      type: object
+      description: object which contains cocktail_id, cocktail_name and cocktail_img_url 
+      properties:
+        cocktail_id:
+          $ref: "#/components/schemas/cocktail_id"
+        cocktail_name_jp:
+          $ref: "#/components/schemas/cocktail_name_jp"
+        cocktail_name_en:
+          $ref: "#/components/schemas/cocktail_name_en"
+        cocktail_img_url:
+          $ref: "#/components/schemas/cocktail_img_url"
+    cocktail_detail:
+      type: object
+      description: details of a cocktail
+      properties:
+        cocktail_id:
+          $ref: "#/components/schemas/cocktail_id"
+        cocktail_name_jp:
+          $ref: "#/components/schemas/cocktail_name_jp"
+        cocktail_name_en:
+          $ref: "#/components/schemas/cocktail_name_en"
+        cocktail_img_url:
+          $ref: "#/components/schemas/cocktail_img_url"
+        cocktail_note_jp:
+          $ref: "#/components/schemas/cocktail_note_jp"
+        cocktail_note_en:
+          $ref: "#/components/schemas/cocktail_note_en"
+        ingredients:
+          $ref: "#/components/schemas/necessary_ingredients"
+        procedure:
+          $ref: "#/components/schemas/procedure"
+    new_or_updated_cocktail_detail:
+      type: object
+      description: details of a new or updated cocktail
+      properties:
+        cocktail_name_jp:
+          $ref: "#/components/schemas/cocktail_name_jp"
+        cocktail_name_en:
+          $ref: "#/components/schemas/cocktail_name_en"
+        cocktail_img_url:
+          $ref: "#/components/schemas/cocktail_img_url"
+        cocktail_note_jp:
+          $ref: "#/components/schemas/cocktail_note_jp"
+        cocktail_note_en:
+          $ref: "#/components/schemas/cocktail_note_en"
+        ingredients:
+          $ref: "#/components/schemas/necessary_ingredients"
+        procedure:
+          $ref: "#/components/schemas/procedure"
+    ingredient_info:
+      type: object
+      description: summary of ingredient info
+      properties:
+        ingredient_id:
+          $ref: "#/components/schemas/ingredient_id"
+        ingredient_name_jp:
+          $ref: "#/components/schemas/ingredient_name_jp"
+        ingredient_name_en:
+          $ref: "#/components/schemas/ingredient_name_en"
+
+  responses:
+    cocktail_summary_list:
+      description: list of cocktail_summary
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/cocktail_summary"
+    cocktail_detail:
+      description: details of a cocktail
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/cocktail_detail"
+    ingredient_list:
+      description: list of all ingredients
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/ingredient_info"
+    ingredient_info:
+      description: JSON of updated ingredient
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ingredient_info"
+
+  requestBodies:
+    new_or_updated_ingredient:
+      description: JSON of new or updated ingredient
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ingredient_name_jp:
+                $ref: "#/components/schemas/ingredient_name_jp"
+              ingredient_name_en:
+                $ref: "#/components/schemas/ingredient_name_en"
+    new_or_updated_cocktail_detail:
+      description: details of a new or updated cocktail
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/new_or_updated_cocktail_detail"
