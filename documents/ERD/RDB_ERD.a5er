@@ -51,30 +51,14 @@ Field="カクテルID","cocktail_id","@INT","NOT NULL",0,"","",$FFFFFFFF,""
 Field="カクテル和名","cocktail_name_jp","@CHAR(16)","NOT NULL",,"","",$FFFFFFFF,""
 Field="カクテル英名","cocktail_name_en","@CHAR(32)",,,"","",$FFFFFFFF,""
 Field="画像URL","image_url","text",,,"","",$FFFFFFFF,""
-EffectMode=None
-Color=$000000
-BkColor=$FFFFFF
-ModifiedDateTime=20220219181950
-Position="MAIN",1500,1000,524,265
-ZOrder=1
-
-[Entity]
-PName=cocktail_notes
-LName=カクテルメモ
-Comment=
-TableOption=
-Page=MAIN
-Left=2250
-Top=1050
-Field="カクテルID","cocktail_id","@INT","NOT NULL",0,"","",$FFFFFFFF,""
 Field="和メモ","cocktail_note_jp","text","NOT NULL",,"","",$FFFFFFFF,""
 Field="英メモ","cocktail_note_en","text",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20220219182008
-Position="MAIN",2250,1050,315,169
-ZOrder=2
+ModifiedDateTime=20220220005139
+Position="MAIN",1500,1000,524,328
+ZOrder=1
 
 [Entity]
 PName=cocktail_materials
@@ -141,7 +125,7 @@ Fields1=cocktail_id
 Fields2=cocktail_id
 Cardinarity1=
 Cardinarity2=
-Position="MAIN",0,2798,7202,3169,R,R,""
+Position="MAIN",0,2798,7202,3922,R,R,""
 Dependence=0
 Caption=
 PName=
@@ -149,7 +133,7 @@ ModifiedDateTime=20220217235948
 LineMode=0
 Bar1=280
 Bar2=720
-Bar3=317
+Bar3=392
 TermPos1=R
 TermPos2=R
 ZOrder=6
@@ -196,28 +180,6 @@ Bar3=626
 TermPos1=R
 TermPos2=R
 ZOrder=10
-
-[Relation]
-Entity1=cocktails
-Entity2=cocktail_notes
-RelationType1=2
-RelationType2=2
-Fields1=cocktail_id
-Fields2=cocktail_id
-Cardinarity1=
-Cardinarity2=
-Position="MAIN",0,4060,5940,3408,R,R,""
-Dependence=1
-Caption=
-PName=
-ModifiedDateTime=20220219190721
-LineMode=0
-Bar1=406
-Bar2=594
-Bar3=341
-TermPos1=R
-TermPos2=R
-ZOrder=11
 
 [Shape]
 Page=Main
