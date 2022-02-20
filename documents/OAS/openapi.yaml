@@ -153,6 +153,24 @@ components:
     cocktail_img_url:
       type: string
       description: URL to image of cocktail
+    method_id:
+      type: integer
+      description: ID of cocktail methods
+    method_name_jp:
+      type: string
+      enum:
+        - ビルド
+        - ステア
+        - シェイク
+        - ブレンド
+      description: methods' name in Japanese
+    method_name_en:
+      type: string
+      enum:
+        - Build
+        - Stir
+        - Shake
+        - Blend
     ingredient_id:
       type: integer
       description: ID of Ingredient (1-based indexing)
@@ -223,6 +241,12 @@ components:
           $ref: "#/components/schemas/cocktail_name_en"
         cocktail_img_url:
           $ref: "#/components/schemas/cocktail_img_url"
+        method_id:
+          $ref: "#/components/schemas/method_id"
+        method_name_jp:
+          $ref: "#/components/schemas/method_name_jp"
+        method_name_en:
+          $ref: "#/components/schemas/method_name_en"
     cocktail_detail:
       type: object
       description: details of a cocktail
@@ -235,6 +259,12 @@ components:
           $ref: "#/components/schemas/cocktail_name_en"
         cocktail_img_url:
           $ref: "#/components/schemas/cocktail_img_url"
+        method_id:
+          $ref: "#/components/schemas/method_id"
+        method_name_jp:
+          $ref: "#/components/schemas/method_name_jp"
+        method_name_en:
+          $ref: "#/components/schemas/method_name_en"
         cocktail_note_jp:
           $ref: "#/components/schemas/cocktail_note_jp"
         cocktail_note_en:
@@ -253,6 +283,8 @@ components:
           $ref: "#/components/schemas/cocktail_name_en"
         cocktail_img_url:
           $ref: "#/components/schemas/cocktail_img_url"
+        method_id:
+          $ref: "#/components/schemas/method_id"
         cocktail_note_jp:
           $ref: "#/components/schemas/cocktail_note_jp"
         cocktail_note_en:
