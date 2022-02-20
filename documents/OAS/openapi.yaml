@@ -205,9 +205,9 @@ components:
           $ref: "#/components/schemas/recipe_jp"
         recipe_en:
           $ref: "#/components/schemas/recipe_en"
-    procedure:
+    procedures:
       type: array
-      description: procedure of making a cocktail
+      description: procedures of making a cocktail
       items:
         $ref: "#/components/schemas/ordered_recipe"
     amount_of_ingredient:
@@ -271,8 +271,8 @@ components:
           $ref: "#/components/schemas/cocktail_note_en"
         ingredients:
           $ref: "#/components/schemas/necessary_ingredients"
-        procedure:
-          $ref: "#/components/schemas/procedure"
+        procedures:
+          $ref: "#/components/schemas/procedures"
     new_or_updated_cocktail_detail:
       type: object
       description: details of a new or updated cocktail
@@ -291,8 +291,8 @@ components:
           $ref: "#/components/schemas/cocktail_note_en"
         ingredients:
           $ref: "#/components/schemas/necessary_ingredients"
-        procedure:
-          $ref: "#/components/schemas/procedure"
+        procedures:
+          $ref: "#/components/schemas/procedures"
     ingredient_info:
       type: object
       description: summary of ingredient info
