@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  cocktail_postgresql:
+    container_name: cocktail_postgresql
+    image: postgres:14.0-alpine
+    ports:
+      - 6432:5432
+    volumes:
+      - ./postgresql/init:/docker-entrypoint-initdb.d
+      - cocktail_db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    restart: always
+
+  cocktail_api:
+    build: ./flask
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./flask/src:/src"
+    tty: true
+    environment:
+      TZ: Asia/Tokyo
+      FLASK_APP: run.py
+      FLASK_ENV: development
+    command: flask run -h 0.0.0.0
+    depends_on:
+      - cocktail_postgresql
+
+volumes:
+  cocktail_db:
+    external: true
