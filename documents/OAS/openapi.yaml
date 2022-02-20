@@ -161,7 +161,7 @@ components:
     amount_en:
       type: string
       description: ingredient amount to make cocktails in English
-    order:
+    step_num:
       type: integer
       description: An integer that represent the order of the step in a recipe (1-based indexing)
     recipe_jp:
@@ -174,8 +174,8 @@ components:
       type: object
       description: object describing one step of how to make a cocktail
       properties:
-        order:
-          $ref: "#/components/schemas/order"
+        step_num:
+          $ref: "#/components/schemas/step_num"
         recipe_jp:
           $ref: "#/components/schemas/recipe_jp"
         recipe_en:

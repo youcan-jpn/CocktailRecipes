@@ -106,13 +106,13 @@ Page=MAIN
 Left=550
 Top=1000
 Field="カクテルID","cocktail_id","@INT","NOT NULL",0,"","",$FFFFFFFF,""
-Field="順番","order","@INT","NOT NULL",1,"","",$FFFFFFFF,""
+Field="順番","step_num","@INT","NOT NULL",1,"","",$FFFFFFFF,""
 Field="和レシピ","recipe_jp","text","NOT NULL",,"","",$FFFFFFFF,""
 Field="英レシピ","recipe_en","text",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20220219182000
+ModifiedDateTime=20220220162542
 Position="MAIN",550,1000,438,234
 ZOrder=5
 
