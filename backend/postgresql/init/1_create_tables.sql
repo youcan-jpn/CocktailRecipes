@@ -13,8 +13,8 @@ GRANT ALL PRIVILEGES ON DATABASE docker TO docker;
 CREATE TABLE IF NOT EXISTS cocktails
 (
     cocktail_id         SERIAL      NOT NULL,
-    cocktali_name_jp    CHAR(16)    NOT NULL,
-    cocktali_name_en    CHAR(32),
+    cocktail_name_jp    CHAR(16)    NOT NULL,
+    cocktail_name_en    CHAR(32),
     image_url           TEXT,
     cocktail_note_jp    TEXT        NOT NULL,
     cocktail_note_en    TEXT,
@@ -24,10 +24,10 @@ CREATE TABLE IF NOT EXISTS cocktails
 CREATE TABLE IF NOT EXISTS recipes
 (
     cocktail_id         INT         REFERENCES cocktails(cocktail_id)   NOT NULL,
-    order               INT         NOT NULL,
+    step_num            INT         NOT NULL,
     recipe_jp           TEXT        NOT NULL,
     recipe_en           TEXT,
-    PRIMARY KEY (cocktail_id, order)
+    PRIMARY KEY (cocktail_id, step_num)
 );
 
 CREATE TABLE IF NOT EXISTS ingredients
