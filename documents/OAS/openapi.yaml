@@ -22,6 +22,16 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/cocktail_summary_list"
+    post:
+      tags:
+        - Cocktails
+      summary: post new cocktail
+      description: You can register a new cocktail by posting a JSON
+      requestBody:
+        $ref: "#/components/requestBodies/new_or_updated_cocktail_detail"
+      responses:
+        "200":
+          $ref: "#/components/responses/cocktail_detail"
   /cocktails/{cocktail_id}:
     get:
       tags:
@@ -37,25 +47,6 @@ paths:
             "required": true
           }
         ]
-      responses:
-        "200":
-          $ref: "#/components/responses/cocktail_detail"
-    post:
-      tags:
-        - Cocktails
-      summary: post new cocktail
-      description: You can register a new cocktail by posting a JSON
-      parameters:
-        [
-          {
-            "in": "path",
-            "name": "cocktail_id",
-            "schema": { type: string },
-            "required": true
-          }
-        ]
-      requestBody:
-        $ref: "#/components/requestBodies/new_or_updated_cocktail_detail"
       responses:
         "200":
           $ref: "#/components/responses/cocktail_detail"
@@ -119,7 +110,23 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/ingredient_info"
-
+    delete:
+      tags:
+        - Ingredients
+      summary: delete a specified ingredient
+      description: You can delete a specified ingredient information (but cannot remove ingredients that are used by any recipes)
+      parameters:
+        [
+          {
+            "in": path,
+            "name": "ingredient_id",
+            "schema": {type: integer},
+            "required": true,
+          },
+        ]
+      responses:
+        "204":
+          description: The resource was deleted successfully.
 tags:
   - name: Cocktails
     description: Access to cocktail info
