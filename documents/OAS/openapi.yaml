@@ -210,6 +210,16 @@ components:
       description: procedures of making a cocktail
       items:
         $ref: "#/components/schemas/ordered_recipe"
+    amount_of_ingredient_without_names:
+      type: object
+      description: object describing a necessary ingredient and its amount
+      properties:
+        ingredient_id:
+          $ref: "#/components/schemas/ingredient_id"
+        amount_jp:
+          $ref: "#/components/schemas/amount_jp"
+        amount_en:
+          $ref: "#/components/schemas/amount_en"
     amount_of_ingredient:
       type: object
       description: object describing a necessary ingredient and its amount
@@ -229,6 +239,12 @@ components:
       description: necessary ingredients to make a cocktail
       items:
         $ref: "#/components/schemas/amount_of_ingredient"
+    necessary_ingredients_without_names:
+      type: array
+      description: necessary ingredients to make a cocktail
+      items:
+        $ref: "#/components/schemas/amount_of_ingredient_without_names"
+
     cocktail_summary:
       type: object
       description: object which contains cocktail_id, cocktail_name and cocktail_img_url 
@@ -290,7 +306,7 @@ components:
         cocktail_note_en:
           $ref: "#/components/schemas/cocktail_note_en"
         ingredients:
-          $ref: "#/components/schemas/necessary_ingredients"
+          $ref: "#/components/schemas/necessary_ingredients_without_names"
         procedures:
           $ref: "#/components/schemas/procedures"
     ingredient_info:
