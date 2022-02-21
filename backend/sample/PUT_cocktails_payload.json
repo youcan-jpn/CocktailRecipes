@@ -1,0 +1,37 @@
+{
+    "cocktail_name_jp": "マティーニ",
+    "cocktail_name_en": "martini",
+    "cocktail_img_url": "undefined",
+    "method_id": 2,
+    "cocktail_note_jp": "カクテルの王様と呼ばれている。「名探偵コナン」ではベルモットがジンに対して『ふたりでマティーニでも作らない？』と言うシーンがある。",
+    "cocktail_note_en": "The king of Cocktails.",
+    "ingredients": [
+        {
+            "ingredient_id": 1,
+            "amount_jp": "45ml",
+            "amount_en": "2oz"
+        },
+        {
+            "ingredient_id": 4,
+            "amount_jp": "15ml",
+            "amount_en": "2/3oz"
+        },
+        {
+            "ingredient_id": 5,
+            "amount_jp": "1つ",
+            "amount_en": "1p"
+        }
+    ],
+    "procedures": [
+        {
+            "step_num": 1,
+            "recipe_jp": "ステアしてカクテルグラスに注ぐ。",
+            "recipe_en": "Stir the gin, martini, and a little ice together, then strain into a chilled martini glass."
+        },
+        {
+            "step_num": 2,
+            "recipe_jp": "オリーブを飾る。",
+            "recipe_en": "Serve with an olive on a cocktail stick."
+        }
+    ]
+}
