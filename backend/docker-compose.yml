@@ -5,7 +5,7 @@ services:
     container_name: cocktail_postgresql
     image: postgres:14.0-alpine
     ports:
-      - 6432:5432
+      - 6433:5432
     volumes:
       - ./postgresql/init:/docker-entrypoint-initdb.d
       - cocktail_db:/var/lib/postgresql/data
